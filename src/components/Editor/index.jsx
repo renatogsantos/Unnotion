@@ -11,10 +11,43 @@ import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";
 import TextStyle from "@tiptap/extension-text-style";
+import Subscript from "@tiptap/extension-subscript";
+import Superscript from "@tiptap/extension-superscript";
 import TextAlign from "@tiptap/extension-text-align";
+import TaskList from "@tiptap/extension-task-list";
+import TaskItem from "@tiptap/extension-task-item";
+import Typography from '@tiptap/extension-typography'
+
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
+import Gapcursor from "@tiptap/extension-gapcursor";
+
 import { RxFontBold, RxFontItalic, RxStrikethrough } from "react-icons/rx";
 import { AiOutlineUnorderedList, AiOutlineOrderedList } from "react-icons/ai";
 import { BsBlockquoteLeft } from "react-icons/bs";
+import {
+  RiInsertColumnRight,
+  RiInsertColumnLeft,
+  RiDeleteColumn,
+  RiDeleteRow,
+  RiInsertRowBottom,
+  RiInsertRowTop,
+  RiMergeCellsHorizontal,
+  RiSplitCellsHorizontal,
+} from "react-icons/ri";
+import {
+  TbTable,
+  TbTableOff,
+  TbFreezeColumn,
+  TbFreezeRow,
+  TbSquaresFilled,
+  TbSquareToggle,
+  TbSquareArrowRight,
+  TbSquareArrowLeft,
+  TbCheckbox
+} from "react-icons/tb";
 import {
   LuHeading6,
   LuHeading5,
@@ -28,7 +61,10 @@ import {
   LuAlignJustify,
   LuAlignLeft,
   LuAlignRight,
+  LuSubscript,
+  LuSuperscript,
 } from "react-icons/lu";
+import { ContentText } from "@/utils/ContentText";
 
 export default function Editor() {
   const editor = useEditor({
@@ -38,7 +74,21 @@ export default function Editor() {
       Document,
       Paragraph,
       Text,
+      Typography,
       TextStyle,
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
+      Subscript,
+      Superscript,
+      Gapcursor,
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableHeader,
+      TableCell,
       Placeholder.configure({
         includeChildren: true,
         placeholder: 'Pressione "/" para comandos',
@@ -47,12 +97,7 @@ export default function Editor() {
         types: ["heading", "paragraph"],
       }),
     ],
-    content: `
-      <h1>Where does it come from?</h1>
-      <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-
-      <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-    `,
+    content: "",
   });
 
   return (
@@ -174,6 +219,30 @@ export default function Editor() {
                 <LuAlignJustify className="f-24px" />
               </button>
               <button
+                onClick={() => editor.chain().focus().toggleBulletList().run()}
+                className={editor.isActive("bulletList") ? "is-active" : ""}
+              >
+                <AiOutlineUnorderedList className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleOrderedList().run()}
+                className={editor.isActive("orderedlist") ? "is-active" : ""}
+              >
+                <AiOutlineOrderedList className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleSubscript().run()}
+                className={editor.isActive("subscript") ? "is-active" : ""}
+              >
+                <LuSubscript className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleSuperscript().run()}
+                className={editor.isActive("superscript") ? "is-active" : ""}
+              >
+                <LuSuperscript className="f-24px" />
+              </button>
+              <button
                 onClick={() => editor.chain().focus().toggleBold().run()}
                 className={editor.isActive("bold") ? "is-active" : ""}
               >
@@ -196,6 +265,100 @@ export default function Editor() {
                 className={editor.isActive("blockquote") ? "is-active" : ""}
               >
                 <BsBlockquoteLeft className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleTaskList().run()}
+                className={editor.isActive("taskList") ? "is-active" : ""}
+              >
+                <TbCheckbox className="f-24px"/>
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="mb-3">
+          {editor && (
+            <div className="bubbleMenu">
+              <button
+                onClick={() =>
+                  editor
+                    .chain()
+                    .focus()
+                    .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+                    .run()
+                }
+              >
+                <TbTable className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().deleteTable().run()}
+              >
+                <TbTableOff className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().addColumnBefore().run()}
+              >
+                <RiInsertColumnLeft className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().addColumnAfter().run()}
+              >
+                <RiInsertColumnRight className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().deleteColumn().run()}
+              >
+                <RiDeleteColumn className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().addRowBefore().run()}
+              >
+                <RiInsertRowTop className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().addRowAfter().run()}
+              >
+                <RiInsertRowBottom className="f-24px" />
+              </button>
+              <button onClick={() => editor.chain().focus().deleteRow().run()}>
+                <RiDeleteRow className="f-24px" />
+              </button>
+              <button onClick={() => editor.chain().focus().mergeCells().run()}>
+                <RiMergeCellsHorizontal className="f-24px" />
+              </button>
+              <button onClick={() => editor.chain().focus().splitCell().run()}>
+                <RiSplitCellsHorizontal className="f-24px" />
+              </button>
+              <button
+                onClick={() =>
+                  editor.chain().focus().toggleHeaderColumn().run()
+                }
+              >
+                <TbFreezeColumn className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleHeaderRow().run()}
+              >
+                <TbFreezeRow className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleHeaderCell().run()}
+              >
+                <TbSquaresFilled className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().mergeOrSplit().run()}
+              >
+                <TbSquareToggle className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().goToPreviousCell().run()}
+              >
+                <TbSquareArrowLeft className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().goToNextCell().run()}
+              >
+                <TbSquareArrowRight className="f-24px" />
               </button>
             </div>
           )}
@@ -362,6 +525,18 @@ export default function Editor() {
             className={editor.isActive("blockquote") ? "is-active" : ""}
           >
             <BsBlockquoteLeft className="f-24px" />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleSubscript().run()}
+            className={editor.isActive("subscript") ? "is-active" : ""}
+          >
+            <LuSubscript className="f-24px" />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleSuperscript().run()}
+            className={editor.isActive("superscript") ? "is-active" : ""}
+          >
+            <LuSuperscript className="f-24px" />
           </button>
         </BubbleMenu>
       )}
