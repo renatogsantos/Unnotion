@@ -1,5 +1,13 @@
 /* The following line can be included in a src/App.scss */
 @import "~bootstrap/scss/bootstrap";
+@import "./colors.scss";
+
+.divisor {
+  height: 32px;
+  width: 1px;
+  background: $color-4;
+  margin: 0 4px;
+}
 
 .ProseMirror {
   padding: 42px;
@@ -24,21 +32,21 @@ code {
 .button-tools {
   display: flex;
   align-items: center;
-  padding: 12px;
+  padding: 6px;
   background: none;
   border: none;
-  color: #fff;
+  color: $color-4;
   font-size: 16px;
   width: fit-content;
-  background: #000000;
-  border-radius: 12px;
+  background: $color-1;
+  border-radius: 6px;
   &:hover {
-    background: #00000030;
+    background: $color-1;
     border: none;
   }
   &:focus {
-    background: #00000050;
-    outline: 1px solid #00000050;
+    background: $color-1;
+    outline: 1px solid $color-1;
     border: none;
   }
   &:disabled {
@@ -52,11 +60,11 @@ code {
   max-width: 400px;
   align-items: center;
   justify-content: center;
-  background: #16142280;
-  backdrop-filter: blur(5px);
-  border-radius: 12px;
+  background: $color-1;
+  backdrop-filter: blur(15px);
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 5px 15px #00000020;
+  box-shadow: 0 0 15px #00000020;
   transition: 0.2s ease-in-out;
   button {
     display: flex;
@@ -64,22 +72,26 @@ code {
     padding: 8px;
     background: none;
     border: none;
-    color: #fff;
+    color: $color-4;
     font-size: 16px;
     width: 100%;
     &:hover {
-      background: #00000030;
-      border: none;
-    }
-    &:focus {
-      background: #00000050;
+      background: $color-2;
       outline: none;
       border: none;
     }
+    &:focus {
+      background: $color-1;
+      outline: none;
+      border: none;
+    }
+    &:disabled {
+      opacity: 0.2;
+    }
   }
   .is-active {
-    background: #00000090;
-    color: #ccc;
+    background: $color-3;
+    color: $color-4;
   }
 }
 
@@ -87,12 +99,11 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #16142280;
-  backdrop-filter: blur(5px);
-  border-radius: 12px;
+  background: $color-1;
+  backdrop-filter: blur(15px);
+  border-radius: 6px;
   overflow: hidden;
   width: fit-content;
-  box-shadow: 0 5px 15px #00000020;
   transition: 0.2s ease-in-out;
   button {
     display: flex;
@@ -103,26 +114,28 @@ code {
     width: 42px;
     background: none;
     border: none;
-    color: #fff;
+    color: $color-4;
     font-size: 16px;
-    border-right: 1px solid #ffffff30;
     &:hover {
-      background: #00000050;
-      outline: 2px solid #00000050;
-      border: none;
-    }
-    &:focus {
-      background: #00000050;
+      background: $color-2;
       outline: none;
       border: none;
+      border-radius: 6px;
+    }
+    &:focus {
+      background: $color-1;
+      outline: none;
+      border: none;
+      border-radius: 6px;
     }
     &:disabled {
       opacity: 0.2;
     }
   }
   .is-active {
-    background: #00000090;
-    color: #ccc;
+    background: $color-3;
+    color: $color-4;
+    border-radius: 6px;
   }
 }
 
@@ -133,7 +146,7 @@ p {
 
 blockquote {
   margin-left: 30px;
-  padding: 12px;
+  padding: 6px;
   border-left: 2px solid #ccc;
   font-style: italic;
   color: #1d1d1d;
@@ -143,8 +156,8 @@ blockquote {
   font-size: 10px;
 }
 
-.f-12px {
-  font-size: 12px;
+.f-6px {
+  font-size: 6px;
 }
 
 .f-16px {
@@ -256,6 +269,21 @@ ul[data-type="taskList"] {
 
     > div {
       flex: 1 1 auto;
+    }
+  }
+}
+
+.ProseMirror {
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  img {
+    height: auto;
+    max-width: 100%;
+
+    &.ProseMirror-selectednode {
+      outline: 3px solid #68cef8;
     }
   }
 }

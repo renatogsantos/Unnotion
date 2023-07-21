@@ -1,28 +1,12 @@
 export const ContentText = `
-<h1 style="text-align: center;">Delicioso Bolo de Cenoura</h1>
+<h1>Lorem Ipsum Dolor</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim diam, commodo vel consequat a, euismod et eros. Duis molestie varius risus, in pharetra nisi porttitor at. Ut quis sapien nec nulla finibus faucibus. In consectetur gravida hendrerit. Aenean sit amet urna id turpis dignissim dignissim vel eu quam. Donec aliquam velit in massa consequat, finibus molestie metus porta. Maecenas nec blandit justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec eu lorem vel eros laoreet fermentum. Pellentesque rhoncus imperdiet neque, eu feugiat mauris semper in. Etiam facilisis luctus urna dictum volutpat. Sed in congue elit. Morbi vestibulum risus at rutrum elementum. Morbi imperdiet libero et orci volutpat tincidunt. Suspendisse facilisis non augue et blandit.</p>
 
-<p style="text-align: center;"><img src="link_da_imagem_do_bolo_de_cenoura.jpg" alt="Bolo de Cenoura" width="400" height="300">Olá, amantes da culinária! Hoje, vamos compartilhar uma receita clássica e irresistível: Bolo de Cenoura. Com uma textura fofinha e sabor marcante, esse bolo é uma verdadeira delícia que agrada a todos os paladares. A combinação perfeita de cenoura, açúcar e especiarias resulta em uma sobremesa simplesmente maravilhosa. Vamos aprender a prepará-la passo a passo!</p>
+<p>Sed eget justo ex. In faucibus turpis sed ligula venenatis, nec lacinia libero fermentum. Proin sit amet rhoncus nisl. Donec eu quam nec urna commodo tempus quis a quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut blandit sem in finibus dictum. Sed tempor dignissim mauris nec varius. Quisque massa dui, rutrum in lacus vel, dignissim blandit felis. Suspendisse nec ullamcorper justo, sed venenatis leo. Nullam accumsan erat tristique ornare sagittis. Phasellus sagittis rutrum lorem, vel condimentum ligula ornare eu.</p>
 
-<h2>Ingredientes:</h2>
+<p>Vestibulum pellentesque bibendum orci in aliquam. Ut pharetra turpis cursus imperdiet malesuada. Nam vestibulum dui vitae sem convallis luctus. Maecenas nunc ex, sagittis at nibh sit amet, hendrerit feugiat ex. Integer lorem odio, consequat vitae lobortis vel, posuere at justo. Suspendisse eu cursus diam, in aliquam arcu. In cursus porttitor ante, ac vehicula purus sagittis sit amet. Nullam velit felis, interdum vel nunc eu, scelerisque euismod enim. Aliquam venenatis nunc sed sapien mattis, sodales vulputate tellus vulputate. Donec ut orci velit.</p>
 
-<ul>
-  <li>3 cenouras médias</li>
-  <li>3 ovos</li>
-  <li>1 xícara de óleo vegetal</li>
-  <li>2 xícaras de açúcar</li>
-  <li>2 xícaras de farinha de trigo</li>
-  <li>1 colher de sopa de fermento em pó</li>
-  <li>1 pitada de sal</li>
-  <li>Manteiga e farinha de trigo para untar e polvilhar a forma</li>
-</ul>
-<h2>Modo de Preparo:</h2>
+<p>Maecenas vestibulum nibh vitae pharetra commodo. Donec in blandit turpis. Praesent consectetur velit at tellus suscipit, vitae fermentum lacus pharetra. Nulla facilisi. Mauris faucibus vitae libero ac lobortis. Cras at ex quis sapien pulvinar facilisis. Aenean elementum neque sed felis rutrum, id hendrerit ante sollicitudin. Pellentesque laoreet dolor sit amet ligula consequat dapibus. Ut nisl risus, finibus id placerat sit amet, vulputate sed lorem. Suspendisse pulvinar semper sollicitudin. Cras lacus sem, pretium eu porttitor a, porttitor eu sapien. Sed velit mi, imperdiet nec feugiat sed, dictum et turpis. Maecenas lectus nunc, feugiat vitae sagittis et, porttitor quis nisl. Donec tincidunt dolor et nisl accumsan pretium. Maecenas bibendum tincidunt augue, finibus lacinia risus ornare eu.</p>
 
-<ol>
-  <li>Pré-aqueça o forno a 180°C. Enquanto isso, comece preparando a massa.</li>
-  <li>Descasque e corte as cenouras em pedaços pequenos. Em seguida, bata as cenouras no liquidificador junto com os ovos e o óleo até obter uma mistura homogênea.</li>
-  <li>Em uma tigela grande, peneire a farinha de trigo, o açúcar, o fermento em pó e o sal. Adicione a mistura líquida das cenouras aos ingredientes secos, mexendo bem até formar uma massa consistente.</li>
-  <li>Unte uma forma redonda com manteiga e polvilhe farinha de trigo para evitar que o bolo grude. Despeje a massa do bolo na forma, espalhando-a de maneira uniforme.</li>
-  <li>Leve o bolo ao forno pré-aquecido e asse por aproximadamente 40 minutos, ou até que um palito inserido no centro do bolo saia limpo.</li>
-  <li>Retire o bolo do forno e deixe esfriar antes de desenformar.</li>
-</ol>
-`
+<p>Quisque dictum sem at sapien convallis, et dapibus leo congue. Aenean imperdiet, lectus nec imperdiet efficitur, lectus felis luctus justo, et tempor orci lorem ac lectus. Suspendisse egestas nunc ut est tempus blandit. Sed aliquet vitae ante vitae aliquam. Duis mauris nulla, finibus nec cursus et, posuere ut quam. Suspendisse quis commodo magna. In hac habitasse platea dictumst. Vivamus dolor risus, tempus a ex et, cursus interdum diam.</p>
+`;

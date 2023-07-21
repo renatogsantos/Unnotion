@@ -16,7 +16,9 @@ import Superscript from "@tiptap/extension-superscript";
 import TextAlign from "@tiptap/extension-text-align";
 import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
-import Typography from '@tiptap/extension-typography'
+import Typography from "@tiptap/extension-typography";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
+import Image from "@tiptap/extension-image";
 
 import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
@@ -46,7 +48,8 @@ import {
   TbSquareToggle,
   TbSquareArrowRight,
   TbSquareArrowLeft,
-  TbCheckbox
+  TbCheckbox,
+  TbMinus,
 } from "react-icons/tb";
 import {
   LuHeading6,
@@ -63,12 +66,15 @@ import {
   LuAlignRight,
   LuSubscript,
   LuSuperscript,
+  LuImagePlus,
 } from "react-icons/lu";
 import { ContentText } from "@/utils/ContentText";
+import { useCallback } from "react";
 
 export default function Editor() {
   const editor = useEditor({
     extensions: [
+      Image,
       StarterKit,
       Blockquote,
       Document,
@@ -89,6 +95,7 @@ export default function Editor() {
       TableRow,
       TableHeader,
       TableCell,
+      HorizontalRule,
       Placeholder.configure({
         includeChildren: true,
         placeholder: 'Pressione "/" para comandos',
@@ -97,8 +104,19 @@ export default function Editor() {
         types: ["heading", "paragraph"],
       }),
     ],
-    content: "",
+    content: ContentText,
+    autofocus: true,
+    editable: true,
+    injectCSS: false,
   });
+
+  const addImage = useCallback(() => {
+    const url = window.prompt("URL");
+
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
+    }
+  }, [editor]);
 
   return (
     <>
@@ -117,7 +135,8 @@ export default function Editor() {
                 disabled={!editor.can().redo()}
               >
                 <LuRedo2 className="f-24px" />
-              </button>
+              </button>              
+              <div className="divisor"></div>
               <button
                 onClick={() =>
                   editor.chain().focus().toggleHeading({ level: 1 }).run()
@@ -178,6 +197,7 @@ export default function Editor() {
               >
                 <LuHeading6 className="f-24px" />
               </button>
+              <div className="divisor"></div>
               <button
                 onClick={() =>
                   editor.chain().focus().setTextAlign("left").run()
@@ -217,7 +237,8 @@ export default function Editor() {
                 }
               >
                 <LuAlignJustify className="f-24px" />
-              </button>
+              </button>              
+              <div className="divisor"></div>
               <button
                 onClick={() => editor.chain().focus().toggleBulletList().run()}
                 className={editor.isActive("bulletList") ? "is-active" : ""}
@@ -230,6 +251,7 @@ export default function Editor() {
               >
                 <AiOutlineOrderedList className="f-24px" />
               </button>
+              <div className="divisor"></div>
               <button
                 onClick={() => editor.chain().focus().toggleSubscript().run()}
                 className={editor.isActive("subscript") ? "is-active" : ""}
@@ -270,7 +292,15 @@ export default function Editor() {
                 onClick={() => editor.chain().focus().toggleTaskList().run()}
                 className={editor.isActive("taskList") ? "is-active" : ""}
               >
-                <TbCheckbox className="f-24px"/>
+                <TbCheckbox className="f-24px" />
+              </button>
+              <button
+                onClick={() => editor.chain().focus().setHorizontalRule().run()}
+              >
+                <TbMinus className="f-24px" />
+              </button>
+              <button onClick={addImage}>
+                <LuImagePlus className="f-24px" />
               </button>
             </div>
           )}
@@ -465,7 +495,6 @@ export default function Editor() {
           </button>
         </FloatingMenu>
       )}
-
       {editor && (
         <BubbleMenu
           className="bubbleMenu"
@@ -503,6 +532,18 @@ export default function Editor() {
             <LuHeading3 className="f-24px" />
           </button>
           <button
+            onClick={() => editor.chain().focus().toggleSubscript().run()}
+            className={editor.isActive("subscript") ? "is-active" : ""}
+          >
+            <LuSubscript className="f-24px" />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleSuperscript().run()}
+            className={editor.isActive("superscript") ? "is-active" : ""}
+          >
+            <LuSuperscript className="f-24px" />
+          </button>
+          <button
             onClick={() => editor.chain().focus().toggleBold().run()}
             className={editor.isActive("bold") ? "is-active" : ""}
           >
@@ -527,16 +568,15 @@ export default function Editor() {
             <BsBlockquoteLeft className="f-24px" />
           </button>
           <button
-            onClick={() => editor.chain().focus().toggleSubscript().run()}
-            className={editor.isActive("subscript") ? "is-active" : ""}
+            onClick={() => editor.chain().focus().toggleTaskList().run()}
+            className={editor.isActive("taskList") ? "is-active" : ""}
           >
-            <LuSubscript className="f-24px" />
+            <TbCheckbox className="f-24px" />
           </button>
           <button
-            onClick={() => editor.chain().focus().toggleSuperscript().run()}
-            className={editor.isActive("superscript") ? "is-active" : ""}
+            onClick={() => editor.chain().focus().setHorizontalRule().run()}
           >
-            <LuSuperscript className="f-24px" />
+            <TbMinus className="f-24px" />
           </button>
         </BubbleMenu>
       )}
