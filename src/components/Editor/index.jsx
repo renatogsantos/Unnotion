@@ -104,7 +104,7 @@ export default function Editor() {
         types: ["heading", "paragraph"],
       }),
     ],
-    content: ContentText,
+    content: "",
     autofocus: true,
     editable: true,
     injectCSS: false,
