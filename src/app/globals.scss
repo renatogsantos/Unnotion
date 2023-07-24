@@ -1,6 +1,7 @@
 /* The following line can be included in a src/App.scss */
 @import "~bootstrap/scss/bootstrap";
 @import "./colors.scss";
+@import "../components/InsertImgModal/style.scss";
 
 body {
   padding: 0;
@@ -52,6 +53,7 @@ body {
   overflow-y: scroll;
 }
 .hero-2 {
+  position: relative;
   flex: 1;
   overflow-y: scroll;
   height: 100dvh;
@@ -95,7 +97,7 @@ code {
   backdrop-filter: blur(15px);
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 5px 10px #00000020;
+  box-shadow: 0 5px 24px #00000090;
   transition: 0.2s ease-in-out;
   button {
     display: flex;
@@ -139,7 +141,7 @@ code {
   overflow: hidden;
   width: fit-content;
   transition: 0.2s ease-in-out;
-  box-shadow: 0 5px 10px #00000020;
+  box-shadow: 0 5px 24px #00000090;
   button {
     display: flex;
     align-items: center;

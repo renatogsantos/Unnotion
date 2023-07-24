@@ -72,9 +72,12 @@ import {
   LuImagePlus,
 } from "react-icons/lu";
 import { ContentText } from "@/utils/ContentText";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+import InsertImgModal from "../InsertImgModal";
 
 export default function Editor() {
+  const [openModalImg, setOpenModalImg] = useState(false);
+  const [urlImagem, setUrlImagem] = useState();
   const editor = useEditor({
     extensions: [
       Image,
@@ -114,16 +117,29 @@ export default function Editor() {
     injectCSS: false,
   });
 
-  const addImage = useCallback(() => {
-    const url = window.prompt("URL");
-
+  const addImage = (url) => {
     if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
+      editor
+        .chain()
+        .focus()
+        .setImage({ src: `${url}` })
+        .run();
+      setOpenModalImg(false);
     }
-  }, [editor]);
+  };
+
+  useEffect(() => {
+    addImage(urlImagem);
+  }, [urlImagem]);
 
   return (
     <>
+      {openModalImg && (
+        <InsertImgModal
+          setOpenModalImg={setOpenModalImg}
+          setUrlImagem={setUrlImagem}
+        />
+      )}
       <div className="d-flex flex-column align-items-center">
         <div className="mb-3">
           {editor && (
@@ -338,7 +354,12 @@ export default function Editor() {
               >
                 <TbMinus className="f-24px" />
               </button>
-              <button onClick={addImage} title="Inserir imagem">
+              <button
+                onClick={() => {
+                  setOpenModalImg(true);
+                }}
+                title="Inserir imagem"
+              >
                 <LuImagePlus className="f-24px" />
               </button>
             </div>
@@ -436,7 +457,7 @@ export default function Editor() {
               <button
                 onClick={() => editor.chain().focus().goToPreviousCell().run()}
                 title="Celula anterior"
-                >
+              >
                 <TbSquareArrowLeft className="f-24px" />
               </button>
               <button
