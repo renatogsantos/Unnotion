@@ -24,9 +24,17 @@ export default function Home() {
     <main>
       <div className="hero">
         <div className="hero-1 p-4">
+          <img
+            draggable={false}
+            src="/unnotion.svg"
+            width="50"
+            alt="UnNotion logo"
+          />
           <div className="d-flex align-items-center justify-content-between">
             <span className="fw-bold f-18px">Comandos do teclado</span>
-            <span className="fw-bold f-24px"><TbKeyboard /></span>
+            <span className="fw-bold f-24px">
+              <TbKeyboard />
+            </span>
           </div>
           <hr />
           <Row className="align-items-center">
