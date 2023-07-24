@@ -26,8 +26,8 @@ export default function Home() {
         <div className="hero-1 p-4">
           <img
             draggable={false}
-            src="/unnotion.svg"
-            width="50"
+            src="/unnotion-logo.svg"
+            width="60"
             alt="UnNotion logo"
           />
           <div className="d-flex align-items-center justify-content-between">
