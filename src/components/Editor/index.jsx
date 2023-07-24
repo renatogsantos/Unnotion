@@ -448,7 +448,7 @@ export default function Editor() {
             </div>
           )}
         </div>
-        <EditorContent style={{ background: "#fff" }} editor={editor} />
+        <EditorContent editor={editor} />
       </div>
       {editor && (
         <FloatingMenu

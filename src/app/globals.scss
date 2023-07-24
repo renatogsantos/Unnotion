@@ -2,21 +2,34 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./colors.scss";
 
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-image: url("/bg-dots.svg");
+  background-position: top left;
+  background-size: 1%;
+  background-repeat: repeat;
+  color: #fff;
+}
+
 .hero {
   display: flex;
   align-items: center;
   height: 100dvh;
 }
+
 .hero-1 {
   display: flex;
   flex-direction: column;
   width: 380px;
   height: 100%;
   background: $color-1;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 42px #00000020;
 }
 .hero-2 {
   flex: 1;
-  background: $color-2;
   overflow-y: scroll;
   height: 100dvh;
 }
@@ -34,7 +47,8 @@
   height: 297mm;
   width: 210mm;
   overflow: hidden;
-  border: 1px solid #d4d4da;
+  border: 1px solid #000;
+  background: #18192b;
 }
 
 .ProseMirror:focus {
@@ -48,31 +62,6 @@ code {
   border-radius: 8px;
 }
 
-.button-tools {
-  display: flex;
-  align-items: center;
-  padding: 6px;
-  background: none;
-  border: none;
-  color: $color-4;
-  font-size: 16px;
-  width: fit-content;
-  background: $color-1;
-  border-radius: 6px;
-  &:hover {
-    background: $color-1;
-    border: none;
-  }
-  &:focus {
-    background: $color-1;
-    outline: 1px solid $color-1;
-    border: none;
-  }
-  &:disabled {
-    opacity: 0.3;
-  }
-}
-
 .floatingMenu {
   display: flex;
   flex-direction: column;
@@ -83,7 +72,7 @@ code {
   backdrop-filter: blur(15px);
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 0 15px #00000020;
+  box-shadow: 0 5px 10px #00000020;
   transition: 0.2s ease-in-out;
   button {
     display: flex;
@@ -127,6 +116,7 @@ code {
   overflow: hidden;
   width: fit-content;
   transition: 0.2s ease-in-out;
+  box-shadow: 0 5px 10px #00000020;
   button {
     display: flex;
     align-items: center;
