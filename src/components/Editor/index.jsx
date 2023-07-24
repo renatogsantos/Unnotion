@@ -13,6 +13,7 @@ import Text from "@tiptap/extension-text";
 import TextStyle from "@tiptap/extension-text-style";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
+import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
@@ -38,6 +39,8 @@ import {
   RiInsertRowTop,
   RiMergeCellsHorizontal,
   RiSplitCellsHorizontal,
+  RiStrikethrough,
+  RiUnderline,
 } from "react-icons/ri";
 import {
   TbTable,
@@ -88,6 +91,7 @@ export default function Editor() {
       }),
       Subscript,
       Superscript,
+      Underline,
       Gapcursor,
       Table.configure({
         resizable: true,
@@ -127,15 +131,17 @@ export default function Editor() {
               <button
                 onClick={() => editor.chain().focus().undo().run()}
                 disabled={!editor.can().undo()}
+                title="Desfazer"
               >
                 <LuUndo2 className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().redo().run()}
                 disabled={!editor.can().redo()}
+                title="Refazer"
               >
                 <LuRedo2 className="f-24px" />
-              </button>              
+              </button>
               <div className="divisor"></div>
               <button
                 onClick={() =>
@@ -144,6 +150,7 @@ export default function Editor() {
                 className={
                   editor.isActive("heading", { level: 1 }) ? "is-active" : ""
                 }
+                title="Título H1"
               >
                 <LuHeading1 className="f-24px" />
               </button>
@@ -154,6 +161,7 @@ export default function Editor() {
                 className={
                   editor.isActive("heading", { level: 2 }) ? "is-active" : ""
                 }
+                title="Título H2"
               >
                 <LuHeading2 className="f-24px" />
               </button>
@@ -164,6 +172,7 @@ export default function Editor() {
                 className={
                   editor.isActive("heading", { level: 3 }) ? "is-active" : ""
                 }
+                title="Título H3"
               >
                 <LuHeading3 className="f-24px" />
               </button>
@@ -174,6 +183,7 @@ export default function Editor() {
                 className={
                   editor.isActive("heading", { level: 4 }) ? "is-active" : ""
                 }
+                title="Título H4"
               >
                 <LuHeading4 className="f-24px" />
               </button>
@@ -184,6 +194,7 @@ export default function Editor() {
                 className={
                   editor.isActive("heading", { level: 5 }) ? "is-active" : ""
                 }
+                title="Título H5"
               >
                 <LuHeading5 className="f-24px" />
               </button>
@@ -194,6 +205,7 @@ export default function Editor() {
                 className={
                   editor.isActive("heading", { level: 6 }) ? "is-active" : ""
                 }
+                title="Título H6"
               >
                 <LuHeading6 className="f-24px" />
               </button>
@@ -205,6 +217,7 @@ export default function Editor() {
                 className={
                   editor.isActive({ textAlign: "left" }) ? "is-active" : ""
                 }
+                title="Alinhar à esquerda"
               >
                 <LuAlignLeft className="f-24px" />
               </button>
@@ -215,6 +228,7 @@ export default function Editor() {
                 className={
                   editor.isActive({ textAlign: "center" }) ? "is-active" : ""
                 }
+                title="Alinhar ao centro"
               >
                 <LuAlignCenter className="f-24px" />
               </button>
@@ -225,6 +239,7 @@ export default function Editor() {
                 className={
                   editor.isActive({ textAlign: "right" }) ? "is-active" : ""
                 }
+                title="Alinhar à direita"
               >
                 <LuAlignRight className="f-24px" />
               </button>
@@ -235,19 +250,27 @@ export default function Editor() {
                 className={
                   editor.isActive({ textAlign: "justify" }) ? "is-active" : ""
                 }
+                title="Justificar texto"
               >
                 <LuAlignJustify className="f-24px" />
-              </button>              
-              <div className="divisor"></div>
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="mb-3">
+          {editor && (
+            <div className="bubbleMenu">
               <button
                 onClick={() => editor.chain().focus().toggleBulletList().run()}
                 className={editor.isActive("bulletList") ? "is-active" : ""}
+                title="Lista com marcador"
               >
                 <AiOutlineUnorderedList className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleOrderedList().run()}
                 className={editor.isActive("orderedlist") ? "is-active" : ""}
+                title="Lista numerada"
               >
                 <AiOutlineOrderedList className="f-24px" />
               </button>
@@ -255,51 +278,67 @@ export default function Editor() {
               <button
                 onClick={() => editor.chain().focus().toggleSubscript().run()}
                 className={editor.isActive("subscript") ? "is-active" : ""}
+                title="Subscrito"
               >
                 <LuSubscript className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleSuperscript().run()}
                 className={editor.isActive("superscript") ? "is-active" : ""}
+                title="Subrescrito"
               >
                 <LuSuperscript className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleBold().run()}
                 className={editor.isActive("bold") ? "is-active" : ""}
+                title="Negrito"
               >
                 <RxFontBold className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleItalic().run()}
                 className={editor.isActive("italic") ? "is-active" : ""}
+                title="Italico"
               >
                 <RxFontItalic className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleStrike().run()}
                 className={editor.isActive("strike") ? "is-active" : ""}
+                title="Traçado"
               >
-                <RxStrikethrough className="f-24px" />
+                <RiStrikethrough className="f-24px" />
               </button>
+              <button
+                onClick={() => editor.chain().focus().toggleUnderline().run()}
+                className={editor.isActive("underline") ? "is-active" : ""}
+                title="Sublinhado"
+              >
+                <RiUnderline className="f-24px" />
+              </button>
+              <div className="divisor"></div>
               <button
                 onClick={() => editor.chain().focus().toggleBlockquote().run()}
                 className={editor.isActive("blockquote") ? "is-active" : ""}
+                title="Citação"
               >
                 <BsBlockquoteLeft className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleTaskList().run()}
                 className={editor.isActive("taskList") ? "is-active" : ""}
+                title="Tarefas"
               >
                 <TbCheckbox className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().setHorizontalRule().run()}
+                title="Linha guia"
               >
                 <TbMinus className="f-24px" />
               </button>
-              <button onClick={addImage}>
+              <button onClick={addImage} title="Inserir imagem">
                 <LuImagePlus className="f-24px" />
               </button>
             </div>
@@ -316,77 +355,93 @@ export default function Editor() {
                     .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
                     .run()
                 }
+                title="Inserir tabela"
               >
                 <TbTable className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().deleteTable().run()}
+                title="Remover tabela"
               >
                 <TbTableOff className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().addColumnBefore().run()}
+                title="Adicionar coluna antes"
               >
                 <RiInsertColumnLeft className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().addColumnAfter().run()}
+                title="Adicionar coluna depois"
               >
                 <RiInsertColumnRight className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().deleteColumn().run()}
+                title="Remover coluna selecionada"
               >
                 <RiDeleteColumn className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().addRowBefore().run()}
+                title="Adicionar linha antes"
               >
                 <RiInsertRowTop className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().addRowAfter().run()}
+                title="Adicionar linha depois"
               >
                 <RiInsertRowBottom className="f-24px" />
               </button>
-              <button onClick={() => editor.chain().focus().deleteRow().run()}>
+              <button
+                onClick={() => editor.chain().focus().deleteRow().run()}
+                title="Remover linha selecionada"
+              >
                 <RiDeleteRow className="f-24px" />
               </button>
-              <button onClick={() => editor.chain().focus().mergeCells().run()}>
+              <button
+                onClick={() => editor.chain().focus().mergeCells().run()}
+                title="Mesclar celulas selecionadas"
+              >
                 <RiMergeCellsHorizontal className="f-24px" />
               </button>
-              <button onClick={() => editor.chain().focus().splitCell().run()}>
+              <button
+                onClick={() => editor.chain().focus().splitCell().run()}
+                title="Separar celulas selecionadas"
+              >
                 <RiSplitCellsHorizontal className="f-24px" />
               </button>
               <button
                 onClick={() =>
                   editor.chain().focus().toggleHeaderColumn().run()
                 }
+                title="Fixar coluna principal"
               >
                 <TbFreezeColumn className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleHeaderRow().run()}
+                title="Fixar linha principal"
               >
                 <TbFreezeRow className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().toggleHeaderCell().run()}
+                title="Transformar em cabeçalho"
               >
                 <TbSquaresFilled className="f-24px" />
               </button>
               <button
-                onClick={() => editor.chain().focus().mergeOrSplit().run()}
-              >
-                <TbSquareToggle className="f-24px" />
-              </button>
-              <button
                 onClick={() => editor.chain().focus().goToPreviousCell().run()}
-              >
+                title="Celula anterior"
+                >
                 <TbSquareArrowLeft className="f-24px" />
               </button>
               <button
                 onClick={() => editor.chain().focus().goToNextCell().run()}
+                title="Próxima celula"
               >
                 <TbSquareArrowRight className="f-24px" />
               </button>
@@ -559,7 +614,13 @@ export default function Editor() {
             onClick={() => editor.chain().focus().toggleStrike().run()}
             className={editor.isActive("strike") ? "is-active" : ""}
           >
-            <RxStrikethrough className="f-24px" />
+            <RiStrikethrough className="f-24px" />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleUnderline().run()}
+            className={editor.isActive("underline") ? "is-active" : ""}
+          >
+            <RiUnderline className="f-24px" />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
